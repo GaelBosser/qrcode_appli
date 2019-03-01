@@ -8,11 +8,14 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>Generation d'un QR Code à partir d'un texte</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-item>
+    <ion-input [(ngModel)]="textToEncoded" placeholder="Saisir le texte à encoder en QR Code"></ion-input>
+  </ion-item>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <qrcode [qrdata]="textToEncoded" [size]="256" [level]="'M'"></qrcode>
+  
+  <button ion-button secondary (click)="encodeText()">Encoder</button>
+  <button ion-button [disabled]="!btnPartageDisabled">Partager</button>
 </ion-content>
