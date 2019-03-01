@@ -10,8 +10,10 @@
 
 <ion-content padding>
   <ion-list *ngFor="let historique of historiques">
-      <div class="item-note" item-end>
-          {{historique.text}} - {{historique.date}}
-        </div>
+    <ion-card padding>
+      <div class="item-note" item-start>
+        {{historique.text}} - {{historique.date}}
+      </div>
+    </ion-card>
   </ion-list>
 </ion-content>

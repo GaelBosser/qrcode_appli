@@ -1,3 +1,5 @@
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { DisplayAlertUtils } from './utils/displayAlertUtils';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -7,12 +9,14 @@ import { MyApp } from './app.component';
 import { GenerationPage } from '../pages/generation/generation';
 import { LecturePage } from '../pages/lecture/lecture';
 import { HistoriquePage } from '../pages/historique/historique';
-
+import { FileChooser } from '@ionic-native/file-chooser';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { QrCodeProvider } from '../providers/qr-code/qr-code';
 import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
+import { IonicStorageModule } from '@ionic/storage'
+import { HistoriqueProvider } from '../providers/historique/historique';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    QRCodeModule
+    QRCodeModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +44,12 @@ import { QRCodeModule } from 'angularx-qrcode';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QrCodeProvider,
-    DisplayAlertUtils
+    DisplayAlertUtils,
+    SocialSharing,
+    BarcodeScanner,
+    FileChooser,
+    HistoriqueProvider,
+    
   ]
 })
 export class AppModule {}

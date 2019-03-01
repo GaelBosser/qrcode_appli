@@ -15,9 +15,9 @@
   </ion-item>
 
   <div *ngIf="btnGenerateClicked">
-      <qrcode [qrdata]="textToEncoded" [size]="256" [level]="'M'"></qrcode>
+      <qrcode #qrcode [qrdata]="textToEncoded" [size]="256" [level]="'M'"></qrcode>
   </div> 
   
   <button ion-button secondary (click)="encodeText()">Encoder</button>
-  <button ion-button [disabled]="!btnGenerateClicked">Partager</button>
+  <button ion-button (click)="shareQrCode()" [disabled]="!btnGenerateClicked">Partager</button>
 </ion-content>

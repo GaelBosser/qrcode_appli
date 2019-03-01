@@ -1,37 +1,29 @@
+import { FileChooser } from '@ionic-native/file-chooser';
+import { QrCodeProvider } from './../../providers/qr-code/qr-code';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DisplayAlertUtils } from '../../app/utils/displayAlertUtils';
 
 @Component({
   selector: 'page-lecture',
   templateUrl: 'lecture.html'
 })
 export class LecturePage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  scannedBool: boolean;
+  scannedText: string;
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private qrCode: QrCodeProvider, private displayAlert: DisplayAlertUtils, private fileChooser: FileChooser) { }
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  btnLectureCamera(){
+    this.scannedBool = true;
+    this.qrCode.scannerQrCode().then(result => this.scannedText = result)
+      .catch(err => this.displayAlert.presentAlert("Erreur", err.status, "Une erreur est survenue durant le scan."));
   }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(LecturePage, {
-      item: item
-    });
+  btnLectureFichier(){
+    this.fileChooser.open()
+      .then(uri => uri)
+      .catch(e => this.displayAlert.presentAlert("Erreur", e.status, e));
   }
 }
