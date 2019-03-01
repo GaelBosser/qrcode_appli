@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle persistent="true">
       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Generation QR Code</ion-title>
+      </button>
+      <ion-title>Generation QR Code</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,8 +14,10 @@
     <ion-input [(ngModel)]="textToEncoded" placeholder="Saisir le texte à encoder en QR Code"></ion-input>
   </ion-item>
 
-  <qrcode [qrdata]="textToEncoded" [size]="256" [level]="'M'"></qrcode>
+  <div *ngIf="btnGenerateClicked">
+      <qrcode [qrdata]="textToEncoded" [size]="256" [level]="'M'"></qrcode>
+  </div> 
   
   <button ion-button secondary (click)="encodeText()">Encoder</button>
-  <button ion-button [disabled]="!btnPartageDisabled">Partager</button>
+  <button ion-button [disabled]="!btnGenerateClicked">Partager</button>
 </ion-content>

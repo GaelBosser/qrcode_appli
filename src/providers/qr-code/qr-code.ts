@@ -1,22 +1,21 @@
+import { Historique } from './../../app/model/historique';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the QrCodeProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class QrCodeProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello QrCodeProvider Provider');
+  private historiques: Array<Historique>;
+
+  constructor(private http: HttpClient) {
+    this.historiques = new Array<Historique>();
   }
 
-  generate(text: string): Promise<string> {
-    //TODO: Code this
-    return Promise.resolve('');
+  getHistoriques(): Array<Historique>{
+    return this.historiques;
   }
 
+  generateQrCodeHistory(historique: Historique): void {
+    this.historiques.push(historique);
+  }
 }

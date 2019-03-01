@@ -1,12 +1,8 @@
+import { QrCodeProvider } from './../../providers/qr-code/qr-code';
+import { Historique } from './../../app/model/historique';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the HistoriquePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +11,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoriquePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  historiques: Array<Historique>
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public qrCode: QrCodeProvider) {
+    this.historiques = new Array<Historique>();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoriquePage');
+  ionViewWillEnter(){
+    this.historiques = this.qrCode.getHistoriques();
   }
-
 }
