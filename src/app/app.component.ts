@@ -1,10 +1,10 @@
+import { HistoriquePage } from './../pages/historique/historique';
+import { LecturePage } from './../pages/lecture/lecture';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { GenerationPage } from '../pages/generation/generation';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +12,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = GenerationPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -21,8 +21,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Generation QR Code', component: GenerationPage },
+      { title: 'Lecture QR Code', component: LecturePage },
+      { title: 'Historique', component: HistoriquePage }
     ];
 
   }
